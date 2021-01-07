@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  picard:
+    build: .
+    container_name: picard
+    ports:
+      - "2200:22"
+      - "10000:10000"
+    volumes:
+      - ~/.ssh/authorized_keys:/authorized_keys
+      - config:/config
+      - /data/hydrohs/Music:/music
+      - /data/hydrohs/ripped:/ripped
+    env_file:
+      - .env
+
+volumes:
+  config:
